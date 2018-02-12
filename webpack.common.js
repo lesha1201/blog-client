@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const paths = {
    SRC: path.resolve(__dirname, 'src'),
    DIST: path.resolve(__dirname, 'dist')
-}
+};
 
 module.exports = {
    entry: path.join(paths.SRC, 'index.js'),
@@ -17,35 +17,39 @@ module.exports = {
    },
    module: {
       rules: [
-         { test: /\.js$/, exclude: /(node_modules|bower_components)/, use: 'babel-loader' },
+         {
+            test: /\.js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: 'babel-loader'
+         },
          {
             test: /\.css$/,
             use: ExtractTextPlugin.extract({
-               fallback: "style-loader",
+               fallback: 'style-loader',
                use: [
-						{
-							loader: "css-loader",
-							options: {
-								minimize: true
-							}
-						}
-					]
+                  {
+                     loader: 'css-loader',
+                     options: {
+                        minimize: true
+                     }
+                  }
+               ]
             })
          },
-         { test: /\.(png|svg|jpg|gif)$/, use: "file-loader" }
+         { test: /\.(png|svg|jpg|gif)$/, use: 'file-loader' }
       ]
    },
    plugins: [
-		new CleanWebpackPlugin(['dist']),
+      new CleanWebpackPlugin(['dist']),
       new HtmlWebpackPlugin({
-			template: 'public/index.html',
-			minify: {
-				collapseWhitespace: true,
-				collapseInlineTagWhitespace: true,
-				removeComments: true,
-				removeRedundantAttributes: true
-		  }
+         template: 'public/index.html',
+         minify: {
+            collapseWhitespace: true,
+            collapseInlineTagWhitespace: true,
+            removeComments: true,
+            removeRedundantAttributes: true
+         }
       }),
-		new ExtractTextPlugin('style.css')
+      new ExtractTextPlugin('style.css')
    ]
-}
+};

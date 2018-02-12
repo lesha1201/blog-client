@@ -1,5 +1,5 @@
 export default function articles(state = [], action) {
-   switch(action.type) {
+   switch (action.type) {
       default:
          return state;
    }

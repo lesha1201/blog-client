@@ -1,0 +1,37 @@
+.navbar {
+   display: flex;
+   width: 100%;
+   justify-content: center;
+   padding: 33px 0;
+}
+
+.navbar__logo {
+   max-height: 48px;
+   margin-right: 65px;
+}
+
+.nav {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 0;
+   padding: 0;
+   list-style: none;
+   font-size: 24px;
+   color: #fff;
+}
+
+.nav__item {
+   margin-right: 65px;
+}
+
+.nav__link {
+   text-decoration: none;
+   color: inherit;
+   transition: color 0.2s ease;
+}
+
+.nav__link:hover,
+.nav__link:active {
+   color: #155ae3;
+}
