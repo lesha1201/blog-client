@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=cyrillic');
 
+* {
+   box-sizing: border-box;
+}
+
 body {
    background-color: #15181e;
    font-family: 'Open Sans', sans-serif;
+   line-height: 1.5;
+}
+
+.container {
+   padding: 0 16.6666667%;
 }
