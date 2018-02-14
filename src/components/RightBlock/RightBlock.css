@@ -1,0 +1,8 @@
+.rightblock {
+   position: relative;
+   width: 970px;
+}
+
+.rightblock .posts-box {
+   margin-top: 30px;
+}

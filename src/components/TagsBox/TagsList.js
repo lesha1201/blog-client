@@ -25,7 +25,7 @@ class TagsList extends React.Component {
             {tags.map(tag => (
                <li
                   className={`tag ${activeTag === tag && 'tag--active'}`}
-                  key={tag.name + tag.quantity}
+                  key={tag.tagname + tag.quantity}
                   onClick={this.handleClick.bind(this, tag)}
                >
                   <div

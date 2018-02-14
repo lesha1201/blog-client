@@ -1,0 +1,26 @@
+.post-box {
+   position: relative;
+   width: 294px;
+   height: 296px;
+   background: #20242d;
+   border-radius: 5px;
+}
+
+.post-box__link {
+   text-decoration: none;
+   color: #fff;
+}
+
+.post-box__img {
+   display: block;
+   height: 64.2%;
+   width: 100%;
+   background-position: center;
+   background-size: cover;
+}
+
+.post-box__title {
+   margin: 0;
+   padding: 20px;
+   font-size: 20px;
+}

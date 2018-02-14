@@ -1,0 +1,10 @@
+.posts-box {
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
+
+.posts-box .post-box {
+   margin-bottom: 45px;
+}

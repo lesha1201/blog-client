@@ -1,0 +1,19 @@
+.searchbar {
+   width: 65.46%;
+   background: transparent;
+   border: none;
+   color: #394253;
+   font-weight: 600;
+   outline: none;
+   padding: 10px;
+   padding-left: 35px;
+   border-bottom: 2px solid #394253;
+   background-image: url(../../../public/img/search.svg);
+   background-repeat: no-repeat;
+   background-size: 25px;
+   background-position-y: center;
+}
+
+.searchbar::-webkit-input-placeholder {
+   color: #394253;
+}
