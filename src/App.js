@@ -1,15 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Route } from 'react-router-dom';
 
 import TopNav from './components/Nav/TopNav';
-import SectionHeading from './components/SectionHeading/SectionHeading';
 import Blog from './big-components/Blog/Blog';
 
-const App = () => (
+const App = ({ location }) => (
    <div>
       <TopNav />
-      <SectionHeading text="Blog" />
-      <Blog />
+      <Route location={location} path="/blog" exact component={Blog} />
    </div>
 );
+
+App.propTypes = {
+   location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired
+   }).isRequired
+};
 
 export default App;

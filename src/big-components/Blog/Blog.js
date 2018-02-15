@@ -3,6 +3,7 @@ import './Blog.css';
 
 import TagsBox from '../../components/TagsBox/TagsBox';
 import RightBlock from '../../components/RightBlock/RightBlock';
+import SectionHeading from '../../components/SectionHeading/SectionHeading';
 
 const tagsData = [
    {
@@ -18,9 +19,12 @@ const tagsData = [
 ];
 
 const Blog = () => (
-   <div className="blog-section">
-      <TagsBox tags={tagsData} />
-      <RightBlock />
+   <div>
+      <SectionHeading text="Blog" />
+      <div className="blog-section">
+         <TagsBox tags={tagsData} />
+         <RightBlock />
+      </div>
    </div>
 );
 

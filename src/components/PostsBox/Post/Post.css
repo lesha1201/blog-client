@@ -6,6 +6,10 @@
    border-radius: 5px;
 }
 
+.post-box:hover .post-box__img {
+   background-size: 150% 150%;
+}
+
 .post-box__link {
    text-decoration: none;
    color: #fff;
@@ -16,7 +20,10 @@
    height: 64.2%;
    width: 100%;
    background-position: center;
-   background-size: cover;
+   background-size: 100% 100%;
+   transition: background-size 0.4s ease;
+   -webkit-transition: background-size 0.4s ease;
+   -moz-transition: background-size 0.4s ease;
 }
 
 .post-box__title {

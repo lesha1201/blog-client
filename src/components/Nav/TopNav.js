@@ -1,27 +1,28 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './TopNav.css';
 
 const TopNav = () => (
    <nav className="navbar">
-      <a href="/">
+      <Link to="/">
          <img className="navbar__logo" src="../../../public/img/twitter.svg" />
-      </a>
+      </Link>
       <ul className="nav">
          <li className="nav__item">
-            <a className="nav__link" href="#">
+            <Link className="nav__link" to="/blog">
                Blog
-            </a>
+            </Link>
          </li>
          <li className="nav__item">
-            <a className="nav__link" href="#">
+            <Link className="nav__link" to="/blog">
                Blog
-            </a>
+            </Link>
          </li>
          <li className="nav__item">
-            <a className="nav__link" href="#">
+            <Link className="nav__link" to="/blog">
                Blog
-            </a>
+            </Link>
          </li>
       </ul>
    </nav>
