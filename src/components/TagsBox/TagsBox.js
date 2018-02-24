@@ -21,17 +21,4 @@ TagsBox.propTypes = {
    ).isRequired
 };
 
-/*
-[
-   {
-      tagname: 'JavaScript',
-      quantity: 162
-   },
-   {
-      tagname: 'React',
-      quantity: 43
-   },
-]
-*/
-
 export default TagsBox;

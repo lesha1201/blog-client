@@ -2,36 +2,36 @@ import React, { Component } from 'react';
 import './PostsBox.css';
 
 import Post from './Post/Post';
+import { apolloFetch } from '../../utils';
 
-const postsData = [
-   {
-      link: '#',
-      title: 'Some title1'
-   },
-   {
-      link: '#',
-      img: 'http://www.gsfdcy.com/data/img/33/1499868-forest-wallpaper.jpg',
-      title: 'Some title2'
-   },
-   {
-      link: '#',
-      img:
-         'http://wallpaper-gallery.net/images/forest-hd-wallpapers/forest-hd-wallpapers-23.jpg',
-      title: 'Some title3'
+const query = `{ 
+   feed {
+      id
+      img
+      title
    }
-];
+}`;
 
 class PostsBox extends Component {
+   state = {
+      posts: []
+   };
+
+   componentDidMount() {
+      apolloFetch({
+         query
+      }).then(res => {
+         this.setState({ posts: res.data.feed });
+      });
+   }
+
+   renderPosts = () => {
+      const { posts } = this.state;
+      return posts.map(post => <Post key={post.id} postData={post} />);
+   };
+
    render() {
-      return (
-         <div className="posts-box">
-            <Post postData={postsData[0]} />
-            <Post postData={postsData[1]} />
-            <Post postData={postsData[2]} />
-            <Post postData={postsData[2]} />
-            <Post postData={postsData[2]} />
-         </div>
-      );
+      return <div className="posts-box">{this.renderPosts()}</div>;
    }
 }
 

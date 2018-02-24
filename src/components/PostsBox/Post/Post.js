@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 import './Post.css';
+
+import { textToReadableURL } from '../../../utils';
 
 const Post = ({ postData }) => {
    postData.img = !postData.img ? Post.defaultProps.postData.img : postData.img;
    return (
       <div className="post-box">
-         <a className="post-box__link" href={postData.link}>
+         <Link
+            className="post-box__link"
+            to={'/' + textToReadableURL(postData.title)}
+         >
             <div
                className="post-box__img"
                style={{
@@ -14,14 +21,13 @@ const Post = ({ postData }) => {
                }}
             />
             <h2 className="post-box__title">{postData.title}</h2>
-         </a>
+         </Link>
       </div>
    );
 };
 
 Post.propTypes = {
    postData: PropTypes.shape({
-      link: PropTypes.string.isRequired,
       img: PropTypes.string,
       title: PropTypes.string.isRequired
    }).isRequired
