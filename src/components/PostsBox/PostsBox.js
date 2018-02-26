@@ -4,20 +4,20 @@ import './PostsBox.css';
 import Post from './Post/Post';
 import { apolloFetch } from '../../utils';
 
-const query = `{ 
-   feed {
-      id
-      img
-      title
-   }
-}`;
-
 class PostsBox extends Component {
    state = {
       posts: []
    };
 
    componentDidMount() {
+      const query = `{ 
+         feed {
+            id
+            img
+            title
+         }
+      }`;
+
       apolloFetch({
          query
       }).then(res => {

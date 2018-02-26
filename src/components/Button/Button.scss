@@ -1,0 +1,60 @@
+$default: #fff;
+$blue: #304ffe;
+$green: #00bb4e;
+
+.btn {
+   border: 1px solid transparent;
+   outline: none;
+   margin: 0;
+   text-decoration: none;
+   padding: 0;
+   cursor: pointer;
+   font-size: 100%;
+   padding: 0.5em 1em;
+   border-radius: 5px;
+   background-color: $default;
+   white-space: nowrap;
+   transition: background 0.1s ease;
+   font-weight: 600;
+
+   &:hover {
+      background-color: darken($default, 7%);
+   }
+   &:active {
+      background-color: darken($default, 14%);
+   }
+}
+
+.btn--blue {
+   background-color: $blue;
+   color: #fff;
+
+   &:hover {
+      background-color: darken($blue, 2%);
+   }
+   &:active {
+      background-color: darken($blue, 5%);
+   }
+}
+
+.btn--green {
+   background-color: $green;
+   color: #fff;
+
+   &:hover {
+      background-color: darken($green, 2%);
+   }
+   &:active {
+      background-color: darken($green, 5%);
+   }
+}
+
+.btn--link {
+   background-color: transparent;
+   color: #fff;
+
+   &:hover {
+      background-color: transparent;
+      text-decoration: underline;
+   }
+}

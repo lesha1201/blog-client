@@ -1,0 +1,31 @@
+@import '../../../css/_colors';
+
+.form-field input {
+   display: block;
+   border: none;
+   border-radius: 5px;
+   background: $bg;
+   outline: none;
+   padding: 18px;
+   margin-top: 12px;
+   margin-bottom: 30px;
+   color: #8c98af;
+   width: 100%;
+
+   &::placeholder {
+      color: #414a5d;
+      opacity: 1;
+   }
+   &::-ms-input-placeholder {
+      color: #414a5d;
+   }
+   &:-ms-input-placeholder {
+      color: #414a5d;
+   }
+}
+
+.form-field label {
+   color: #fff;
+   text-transform: uppercase;
+   font-size: 20px;
+}

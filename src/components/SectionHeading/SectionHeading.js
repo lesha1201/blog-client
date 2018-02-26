@@ -1,13 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './SectionHeading.css';
+import './SectionHeading.scss';
 
-const SectionHeading = ({ text }) => (
-   <div className="section-heading">
-      {text[0].toUpperCase() + text.slice(1)}
-   </div>
-);
+const SectionHeading = ({ text }) => {
+   const words = text.split(' ');
+
+   return (
+      <div className="section-heading">
+         {words.map((word, inx) => (
+            <span className="section-heading__word" key={word + inx}>
+               {word}&nbsp;
+            </span>
+         ))}
+      </div>
+   );
+};
 
 SectionHeading.propTypes = {
    text: PropTypes.string.isRequired

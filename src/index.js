@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import '../public/style.css';
+import './css/style.scss';
 import rootReducer from './reducers/';
 import App from './App';
 

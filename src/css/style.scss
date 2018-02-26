@@ -1,15 +1,29 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=cyrillic');
+@import './_colors';
 
 * {
    box-sizing: border-box;
 }
 
 body {
-   background-color: #15181e;
+   background-color: $bg;
    font-family: 'Open Sans', sans-serif;
    line-height: 1.5;
+   font-size: 18px;
 }
 
 .container {
    padding: 0 16.6666667%;
+}
+
+.flex {
+   display: flex;
+}
+
+.flex--column {
+   flex-flow: column;
+}
+
+.flex--ai-center {
+   align-items: center;
 }

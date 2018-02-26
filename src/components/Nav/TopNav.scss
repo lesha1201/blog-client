@@ -1,13 +1,16 @@
+@import '../../css/_colors';
+
 .navbar {
    display: flex;
    width: 100%;
-   justify-content: center;
+   justify-content: flex-start;
+   align-items: center;
    padding: 35px 0;
 }
 
 .navbar__logo {
    max-height: 48px;
-   margin-right: 65px;
+   margin-right: 55px;
 }
 
 .nav {
@@ -18,6 +21,7 @@
    padding: 0;
    list-style: none;
    font-size: 24px;
+   font-weight: 600;
    color: #fff;
 }
 
@@ -33,5 +37,13 @@
 
 .nav__link:hover,
 .nav__link:active {
-   color: #155ae3;
+   color: $accent;
+}
+
+.navbar__right {
+   margin-left: auto;
+}
+
+.navbar__right .btn:not(:last-child) {
+   margin-right: 15px;
 }

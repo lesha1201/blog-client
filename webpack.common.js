@@ -3,6 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const extractSass = new ExtractTextPlugin({
+   filename: '[name].[contenthash].css',
+   disable: process.env.NODE_ENV === 'development'
+});
+
 const paths = {
    SRC: path.resolve(__dirname, 'src'),
    DIST: path.resolve(__dirname, 'dist')
@@ -23,8 +28,8 @@ module.exports = {
             use: 'babel-loader'
          },
          {
-            test: /\.css$/,
-            use: ExtractTextPlugin.extract({
+            test: /\.(s*)css$/,
+            use: extractSass.extract({
                fallback: 'style-loader',
                use: [
                   {
@@ -32,7 +37,8 @@ module.exports = {
                      options: {
                         minimize: true
                      }
-                  }
+                  },
+                  { loader: 'sass-loader' }
                ]
             })
          },
@@ -50,6 +56,6 @@ module.exports = {
             removeRedundantAttributes: true
          }
       }),
-      new ExtractTextPlugin('style.css')
+      extractSass
    ]
 };

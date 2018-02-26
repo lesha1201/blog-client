@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './TopNav.scss';
 
-import './TopNav.css';
+import Button from '../Button/Button';
 
 const TopNav = () => (
    <nav className="navbar">
@@ -25,6 +26,10 @@ const TopNav = () => (
             </Link>
          </li>
       </ul>
+      <div className="navbar__right">
+         <Button color="blue" text="Sign In" to="/signin" />
+         <Button color="green" text="Sign Up" to="/signup" />
+      </div>
    </nav>
 );
 
