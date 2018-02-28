@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './SignInForm.scss';
 
 import Form from '../../../components/Form/Form';
 import Button from '../../../components/Button/Button';
@@ -18,7 +17,7 @@ class SignInForm extends Component {
 
    render() {
       return (
-         <div className="signin-form">
+         <div className="sign-form">
             <Form>
                <Form.Field>
                   <label htmlFor="username">Username</label>

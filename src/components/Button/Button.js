@@ -27,7 +27,7 @@ class Button extends React.Component {
 
 Button.propTypes = {
    text: PropTypes.string.isRequired,
-   to: PropTypes.string.isRequired,
+   to: PropTypes.string,
    color: PropTypes.string
 };
 

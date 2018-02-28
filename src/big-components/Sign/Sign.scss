@@ -1,0 +1,13 @@
+.sign {
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+}
+
+.sign-form {
+   width: 468px;
+
+   & .btn:not(:last-child) {
+      margin-right: 5px;
+   }
+}
