@@ -10,12 +10,18 @@ class Form extends Component {
    static Field = FormField;
 
    render() {
-      return <form className="form">{this.props.children}</form>;
+      const { onSubmit } = this.props;
+      return (
+         <form onSubmit={onSubmit && onSubmit} className="form">
+            {this.props.children}
+         </form>
+      );
    }
 }
 
 Form.propTypes = {
-   children: PropTypes.node
+   children: PropTypes.node,
+   onSubmit: PropTypes.func
 };
 
 export default Form;
