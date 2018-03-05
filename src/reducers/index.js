@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-import articles from './articles';
+import blog from './blog';
 import user from './user';
 import loading from './loading';
 
 const rootReducer = combineReducers({
-   articles,
+   blog,
    user,
    loading
 });

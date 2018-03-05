@@ -1,0 +1,17 @@
+.not-found {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   color: #fff;
+}
+
+.not-found__code {
+   font-size: 180px;
+   font-weight: 600;
+   line-height: 1.1;
+}
+
+.not-found__description {
+   font-size: 42px;
+}

@@ -1,32 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import './PostsBox.css';
 
 import Post from './Post/Post';
-import { apolloFetch } from '../../utils';
+import { fetchPosts } from '../../actions/blog';
 
 class PostsBox extends Component {
-   state = {
-      posts: []
-   };
-
    componentDidMount() {
-      const query = `{ 
-         feed {
-            id
-            img
-            title
-         }
-      }`;
-
-      apolloFetch({
-         query
-      }).then(res => {
-         this.setState({ posts: res.data.feed });
-      });
+      this.props.fetchPosts();
    }
 
    renderPosts = () => {
-      const { posts } = this.state;
+      const { posts } = this.props;
       return posts.map(post => <Post key={post.id} postData={post} />);
    };
 
@@ -35,4 +21,25 @@ class PostsBox extends Component {
    }
 }
 
-export default PostsBox;
+PostsBox.propTypes = {
+   fetchPosts: PropTypes.func.isRequired,
+   posts: PropTypes.arrayOf(
+      PropTypes.shape({
+         id: PropTypes.string.isRequired,
+         img: PropTypes.string.isRequired,
+         title: PropTypes.string.isRequired
+      })
+   )
+};
+
+PostsBox.defaultProps = {
+   posts: []
+};
+
+function mapStateToProps(state) {
+   return {
+      posts: state.blog.posts
+   };
+}
+
+export default connect(mapStateToProps, { fetchPosts })(PostsBox);

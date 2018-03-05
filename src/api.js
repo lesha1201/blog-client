@@ -7,6 +7,7 @@ const query = {
             username
             email
             fullName
+            role
          }
       }
    `,
@@ -18,6 +19,7 @@ const query = {
                username
                email
                fullName
+               role
             }
          }
       }
@@ -35,28 +37,50 @@ const query = {
                username
                email
                fullName
+               role
             }
          }
       }
-   `
+   `,
+   allTags: `{ 
+      allTags {
+         tagname
+         quantity
+         color
+      }
+   }`,
+   getPosts: `{ 
+      feed {
+         id
+         img
+         title
+      }
+   }`
 };
 
-export default {
-   user: {
-      login: userInfo =>
-         apolloFetch({ query: query.signin, variables: userInfo }).then(
-            res => ({ ...res.data.signin.user, token: res.data.signin.token })
-         ),
-      signup: userInfo =>
-         apolloFetch({ query: query.signup, variables: userInfo }).then(
-            res => ({ ...res.data.signup.user, token: res.data.signup.token })
-         ),
-      verifyJWT: token =>
-         apolloFetch({ query: query.verifyJWT, variables: { token } }).then(
-            res => {
-               if (res.errors) throw res.errors[0].message;
-               else return res.data.verifyJWT;
-            }
-         )
-   }
+export const userAPI = {
+   login: userInfo =>
+      apolloFetch({ query: query.signin, variables: userInfo }).then(res => ({
+         ...res.data.signin.user,
+         token: res.data.signin.token
+      })),
+   signup: userInfo =>
+      apolloFetch({ query: query.signup, variables: userInfo }).then(res => ({
+         ...res.data.signup.user,
+         token: res.data.signup.token
+      })),
+   verifyJWT: token =>
+      apolloFetch({ query: query.verifyJWT, variables: { token } }).then(
+         res => {
+            if (res.errors) throw res.errors[0].message;
+            else return res.data.verifyJWT;
+         }
+      )
+};
+
+export const blogAPI = {
+   getAllTags: () =>
+      apolloFetch({ query: query.allTags }).then(res => res.data.allTags),
+   getPosts: () =>
+      apolloFetch({ query: query.getPosts }).then(res => res.data.feed)
 };

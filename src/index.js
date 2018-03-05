@@ -10,7 +10,7 @@ import './css/style.scss';
 import rootReducer from './reducers/';
 import App from './App';
 import { AUTH_TOKEN, LOADING, NO_LOADING } from './constants';
-import api from './api';
+import { userAPI } from './api';
 import { logout, userLoggedIn } from './actions/user';
 
 const store = createStore(
@@ -22,7 +22,7 @@ const token = localStorage.getItem(AUTH_TOKEN);
 
 if (token) {
    store.dispatch({ type: LOADING });
-   api.user
+   userAPI
       .verifyJWT(token)
       .then(res => {
          store.dispatch(userLoggedIn({ ...res, token }));

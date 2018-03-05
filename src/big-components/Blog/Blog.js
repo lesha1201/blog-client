@@ -4,7 +4,7 @@ import './Blog.css';
 import TagsBox from '../../components/TagsBox/TagsBox';
 import RightBlock from '../../components/RightBlock/RightBlock';
 import SectionHeading from '../../components/SectionHeading/SectionHeading';
-import { apolloFetch } from '../../utils';
+import { blogAPI } from '../../api';
 
 class Blog extends Component {
    state = {
@@ -12,17 +12,7 @@ class Blog extends Component {
    };
 
    componentDidMount() {
-      const query = `{ 
-         allTags {
-            tagname
-            quantity
-            color
-         }
-      }`;
-
-      apolloFetch({ query }).then(res =>
-         this.setState({ tags: res.data.allTags })
-      );
+      blogAPI.getAllTags().then(tags => this.setState({ tags }));
    }
 
    render() {

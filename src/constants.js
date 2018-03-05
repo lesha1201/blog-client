@@ -4,3 +4,4 @@ export const USER_LOGGED_IN = 'USER_LOGGED_IN';
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
 export const LOADING = 'LOADING';
 export const NO_LOADING = 'NO_LOADING';
+export const STORE_POSTS = 'STORE_POSTS';
