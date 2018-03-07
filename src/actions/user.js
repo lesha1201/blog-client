@@ -21,5 +21,6 @@ export const signup = userInfo => dispatch =>
 
 export const logout = () => dispatch => {
    localStorage.removeItem(AUTH_TOKEN);
+   localStorage.setItem('logout-event', 'true');
    dispatch(userLoggedOut());
 };

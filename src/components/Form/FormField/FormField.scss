@@ -5,7 +5,8 @@ $errorText: #e0e0e0;
    position: relative;
 }
 
-.form-field input {
+.form-field input,
+.form-field textarea {
    display: block;
    border: none;
    border-radius: 5px;
@@ -27,6 +28,10 @@ $errorText: #e0e0e0;
    &:-ms-input-placeholder {
       color: #414a5d;
    }
+}
+
+.form-field textarea {
+   line-height: 1.5;
 }
 
 .form-field label {

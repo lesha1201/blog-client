@@ -1,0 +1,17 @@
+.create-post .tags-list {
+   margin: 15px 0;
+}
+
+.create-post .tags-list__tag {
+   display: inline-block;
+   padding: 5px 15px;
+   border-radius: 5px;
+   background: #004cff;
+   margin-right: 10px;
+}
+
+.create-post .tags_list__tag__close {
+   margin-left: 5px;
+   font-size: 12px;
+   cursor: pointer;
+}

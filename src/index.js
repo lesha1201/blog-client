@@ -20,6 +20,12 @@ const store = createStore(
 
 const token = localStorage.getItem(AUTH_TOKEN);
 
+window.addEventListener('storage', function(e) {
+   if (e.key === AUTH_TOKEN && e.newValue === null) {
+      location.reload();
+   }
+});
+
 if (token) {
    store.dispatch({ type: LOADING });
    userAPI
