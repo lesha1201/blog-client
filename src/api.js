@@ -56,6 +56,19 @@ const query = {
          title
       }
    }`,
+   getPost: `
+      query getPost($id: String!) {
+         getPost(id: $id) {
+            title
+            img
+            text
+            author {
+               fullName
+            }
+            tags
+         }
+      }
+   `,
    createPost: `
       mutation createPost($input: ArticleInput!) {
          createPost(input: $input) {
@@ -94,6 +107,10 @@ export const blogAPI = {
       apolloFetch({ query: query.allTags }).then(res => res.data.allTags),
    getPosts: () =>
       apolloFetch({ query: query.getPosts }).then(res => res.data.feed),
+   getPost: id =>
+      apolloFetch({ query: query.getPost, variables: { id } }).then(
+         res => res.data.getPost
+      ),
    createPost: data =>
       apolloFetch({ query: query.createPost, variables: { input: data } }).then(
          res => res.data.createPost

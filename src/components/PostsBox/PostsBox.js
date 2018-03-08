@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './PostsBox.css';
 
-import Post from './Post/Post';
+import PostCard from './PostCard/PostCard';
 import { fetchPosts } from '../../actions/blog';
 
 class PostsBox extends Component {
@@ -13,7 +13,7 @@ class PostsBox extends Component {
 
    renderPosts = () => {
       const { posts } = this.props;
-      return posts.map(post => <Post key={post.id} postData={post} />);
+      return posts.map(post => <PostCard key={post.id} postData={post} />);
    };
 
    render() {

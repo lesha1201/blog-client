@@ -11,7 +11,7 @@ import rootReducer from './reducers/';
 import App from './App';
 import { AUTH_TOKEN, LOADING, NO_LOADING } from './constants';
 import { userAPI } from './api';
-import { logout, userLoggedIn } from './actions/user';
+import { logout, authUser } from './actions/user';
 
 const store = createStore(
    rootReducer,
@@ -31,7 +31,7 @@ if (token) {
    userAPI
       .verifyJWT(token)
       .then(res => {
-         store.dispatch(userLoggedIn({ ...res, token }));
+         authUser({ ...res, token }, store.dispatch);
       })
       .catch(() => {
          logout()(store.dispatch);

@@ -11,6 +11,7 @@ import CreatePost from './big-components/CreatePost/CreatePost';
 import Loader from './components/Loader/Loader';
 import NotFound from './components/NotFound/NotFound';
 import ModeratorRoute from './components/Routes/ModeratorRoute';
+import PostPage from './big-components/PostPage/PostPage';
 
 const App = ({ location, loading }) => {
    if (loading) return <Loader color="#304ffe" />;
@@ -30,6 +31,12 @@ const App = ({ location, loading }) => {
                path="/signup"
                exact
                component={SignUp}
+            />
+            <Route
+               location={location}
+               path="/blog/:id/:title"
+               exact
+               component={PostPage}
             />
             <ModeratorRoute
                location={location}
