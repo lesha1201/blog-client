@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import TopNav from './components/Nav/TopNav';
 import Blog from './big-components/Blog/Blog';
 import SignIn from './big-components/Sign/SignIn/SignIn';
 import SignUp from './big-components/Sign/SignUp/SignUp';
+import PostPage from './big-components/PostPage/PostPage';
 import CreatePost from './big-components/CreatePost/CreatePost';
+import TopNav from './components/Nav/TopNav';
 import Loader from './components/Loader/Loader';
 import NotFound from './components/NotFound/NotFound';
+// Routes
 import ModeratorRoute from './components/Routes/ModeratorRoute';
-import PostPage from './big-components/PostPage/PostPage';
+import GuestRoute from './components/Routes/GuestRoute';
 
 const App = ({ location, loading }) => {
    if (loading) return <Loader color="#304ffe" />;
@@ -20,17 +22,23 @@ const App = ({ location, loading }) => {
          <TopNav />
          <Switch>
             <Route location={location} path="/blog" exact component={Blog} />
-            <Route
+            <GuestRoute
                location={location}
                path="/signin"
                exact
                component={SignIn}
             />
-            <Route
+            <GuestRoute
                location={location}
                path="/signup"
                exact
                component={SignUp}
+            />
+            <ModeratorRoute
+               location={location}
+               path="/blog/edit/:id"
+               exact
+               component={CreatePost}
             />
             <Route
                location={location}

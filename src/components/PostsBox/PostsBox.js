@@ -12,12 +12,21 @@ class PostsBox extends Component {
    }
 
    renderPosts = () => {
-      const { posts } = this.props;
-      return posts.map(post => <PostCard key={post.id} postData={post} />);
+      const { posts, filter } = this.props;
+      return posts
+         .filter(post =>
+            post.title.toLowerCase().includes(filter.toLowerCase())
+         )
+         .map(post => <PostCard key={post.id} postData={post} />);
    };
 
    render() {
-      return <div className="posts-box">{this.renderPosts()}</div>;
+      const postsLength = this.renderPosts().length;
+      return (
+         <div className="posts-box">
+            {postsLength > 0 ? this.renderPosts() : <div>Can&apos;t find</div>}
+         </div>
+      );
    }
 }
 
@@ -29,11 +38,13 @@ PostsBox.propTypes = {
          img: PropTypes.string.isRequired,
          title: PropTypes.string.isRequired
       })
-   )
+   ),
+   filter: PropTypes.string
 };
 
 PostsBox.defaultProps = {
-   posts: []
+   posts: [],
+   filter: ''
 };
 
 function mapStateToProps(state) {

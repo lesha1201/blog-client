@@ -15,3 +15,7 @@
    font-size: 12px;
    cursor: pointer;
 }
+
+.btn:not(:last-child) {
+   margin-right: 15px;
+}

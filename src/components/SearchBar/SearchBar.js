@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './SearchBar.css';
 
 class SearchBar extends Component {
@@ -20,12 +21,16 @@ class SearchBar extends Component {
       return (
          <input
             className="searchbar"
-            onChange={this.handleChange}
+            onChange={this.props.input ? this.props.input : this.handleChange}
             type="text"
             placeholder="Search..."
          />
       );
    }
 }
+
+SearchBar.propTypes = {
+   input: PropTypes.func
+};
 
 export default SearchBar;

@@ -1,6 +1,7 @@
 $default: #fff;
 $blue: #304ffe;
 $green: #00bb4e;
+$red: #dd2b34;
 
 .btn {
    border: 1px solid transparent;
@@ -46,6 +47,18 @@ $green: #00bb4e;
    }
    &:active {
       background-color: darken($green, 5%);
+   }
+}
+
+.btn--red {
+   background-color: $red;
+   color: #fff;
+
+   &:hover {
+      background-color: darken($red, 5%);
+   }
+   &:active {
+      background-color: darken($red, 14%);
    }
 }
 

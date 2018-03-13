@@ -12,13 +12,20 @@ class Button extends React.Component {
       const { text, color, to } = this.props;
       if (to)
          return (
-            <Link to={to} className={`btn ${color ? 'btn--' + color : ''}`}>
+            <Link
+               to={to}
+               className={`btn ${color ? 'btn--' + color : ''}`}
+               {...this.props}
+            >
                {text}
             </Link>
          );
       else
          return (
-            <button className={`btn ${color ? 'btn--' + color : ''}`}>
+            <button
+               className={`btn ${color ? 'btn--' + color : ''}`}
+               {...this.props}
+            >
                {text}
             </button>
          );

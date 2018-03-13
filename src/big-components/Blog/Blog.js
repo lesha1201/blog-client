@@ -17,13 +17,13 @@ class Blog extends Component {
 
    render() {
       return (
-         <div>
+         <React.Fragment>
             <SectionHeading text="Blog" />
-            <div className="blog-section">
+            <div className="flex-sb">
                <TagsBox tags={this.state.tags} />
                <RightBlock />
             </div>
-         </div>
+         </React.Fragment>
       );
    }
 }

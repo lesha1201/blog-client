@@ -4,15 +4,18 @@ import PropTypes from 'prop-types';
 import { blogAPI } from '../../api';
 import Post from '../../components/Post/Post';
 import PostInfo from '../../components/PostInfo/PostInfo';
+import SectionHeading from '../../components/SectionHeading/SectionHeading';
 
 class PostPage extends Component {
    state = {
       post: {
+         id: '',
          author: { fullName: '' },
          title: '',
          tags: [],
          text: '',
-         img: ''
+         img: '',
+         createdAt: ''
       }
    };
 
@@ -25,10 +28,13 @@ class PostPage extends Component {
    render() {
       const { post } = this.state;
       return (
-         <div className="flex-sb">
-            <Post post={post} />
-            <PostInfo author={post.author.fullName} tags={post.tags} />
-         </div>
+         <React.Fragment>
+            <SectionHeading text="Blog" />
+            <div className="flex-sb">
+               <Post post={post} />
+               <PostInfo author={post.author.fullName} tags={post.tags} />
+            </div>
+         </React.Fragment>
       );
    }
 }

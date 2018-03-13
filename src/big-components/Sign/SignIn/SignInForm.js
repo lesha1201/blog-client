@@ -25,7 +25,7 @@ class SignInForm extends Component {
       e.preventDefault();
 
       const { userInfo } = this.state;
-      this.props.login(userInfo).then(() => this.props.history.push('/'));
+      this.props.login(userInfo).then(() => this.props.history.push('/blog'));
    };
 
    render() {
