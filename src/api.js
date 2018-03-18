@@ -49,13 +49,18 @@ const query = {
          color
       }
    }`,
-   getPosts: `{ 
-      feed {
-         id
-         img
-         title
+   getPosts: `
+      query feed($filter: String, $skip: Int, $limit: Int) { 
+         feed(filter: $filter, skip: $skip, limit: $limit) {
+            articles {
+               id
+               img
+               title
+            }
+            count
+         }
       }
-   }`,
+   `,
    getPost: `
       query getPost($id: String!) {
          getPost(id: $id) {
@@ -121,8 +126,11 @@ export const userAPI = {
 export const blogAPI = {
    getAllTags: () =>
       apolloFetch({ query: query.allTags }).then(res => res.data.allTags),
-   getPosts: () =>
-      apolloFetch({ query: query.getPosts }).then(res => res.data.feed),
+   getPosts: (filter, skip, limit) =>
+      apolloFetch({
+         query: query.getPosts,
+         variables: { filter, skip, limit }
+      }).then(res => res.data.feed),
    getPost: id =>
       apolloFetch({ query: query.getPost, variables: { id } }).then(
          res => res.data.getPost

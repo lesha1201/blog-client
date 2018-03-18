@@ -4,12 +4,23 @@ import './TagsBox.css';
 
 import TagsList from './TagsList.js';
 
-const TagsBox = ({ tags }) => (
-   <div className="tags-box">
-      <h2 className="tags-box__heading">Tags</h2>
-      <TagsList tags={tags} />
-   </div>
-);
+class TagsBox extends React.Component {
+   shouldComponentUpdate(nextProps) {
+      const jsonNextTags = JSON.stringify(nextProps.tags);
+      const jsonTags = JSON.stringify(this.props.tags);
+
+      return jsonTags !== jsonNextTags ? true : false;
+   }
+
+   render() {
+      return (
+         <div className="tags-box">
+            <h2 className="tags-box__heading">Tags</h2>
+            <TagsList tags={this.props.tags} />
+         </div>
+      );
+   }
+}
 
 TagsBox.propTypes = {
    tags: PropTypes.arrayOf(

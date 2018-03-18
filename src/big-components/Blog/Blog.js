@@ -21,7 +21,7 @@ class Blog extends Component {
             <SectionHeading text="Blog" />
             <div className="flex-sb">
                <TagsBox tags={this.state.tags} />
-               <RightBlock />
+               <RightBlock location={this.props.location} />
             </div>
          </React.Fragment>
       );

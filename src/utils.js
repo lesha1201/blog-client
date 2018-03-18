@@ -1,4 +1,5 @@
 import { createApolloFetch } from 'apollo-fetch';
+import querystring from 'querystring';
 
 import { SERVER_ENDPOINT } from './constants';
 
@@ -25,4 +26,9 @@ export function textToReadableURL(text, id, url) {
    if (id) result += '--' + id;
 
    return url ? url + '/' + result : result;
+}
+
+export function parseQueryString(query) {
+   const fields = query.substr(query.indexOf('?') + 1);
+   return querystring.parse(fields);
 }

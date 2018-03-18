@@ -1,56 +1,98 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import './PostsBox.css';
 
 import PostCard from './PostCard/PostCard';
-import { fetchPosts } from '../../actions/blog';
+import { blogAPI } from '../../api';
+import { POST_PER_PAGE } from '../../constants';
+import Button from '../Button/Button';
+import { parseQueryString } from '../../utils';
 
 class PostsBox extends Component {
+   state = {
+      posts: {
+         articles: [],
+         count: 0
+      },
+      page: parseInt(parseQueryString(this.props.location.search).page) || 1
+   };
+
    componentDidMount() {
-      this.props.fetchPosts();
+      this.fetchPosts();
    }
 
+   componentWillReceiveProps(nextProps) {
+      if (nextProps.filter !== this.props.filter) {
+         this.fetchPosts(nextProps.filter);
+      }
+      if (nextProps.location.search !== this.props.location.search) {
+         const page =
+            parseInt(parseQueryString(nextProps.location.search).page) || 1;
+         window.scroll({
+            top: 0,
+            behavior: 'smooth'
+         });
+         this.fetchPosts('', page);
+         this.setState({ page });
+      }
+   }
+
+   fetchPosts = (filter = this.props.filter, page = this.state.page) => {
+      const skip = filter ? 0 : POST_PER_PAGE * (page - 1);
+
+      blogAPI.getPosts(filter, skip, POST_PER_PAGE).then(posts => {
+         this.setState({ posts });
+      });
+   };
+
    renderPosts = () => {
-      const { posts, filter } = this.props;
-      return posts
-         .filter(post =>
-            post.title.toLowerCase().includes(filter.toLowerCase())
+      const { filter } = this.props;
+      const { articles } = this.state.posts;
+
+      return articles
+         .filter(article =>
+            article.title.toLowerCase().includes(filter.toLowerCase())
          )
-         .map(post => <PostCard key={post.id} postData={post} />);
+         .map(article => <PostCard key={article.id} postData={article} />);
    };
 
    render() {
-      const postsLength = this.renderPosts().length;
+      const postsNodes = this.renderPosts();
+      const { count } = this.state.posts;
+      const { page } = this.state;
+
       return (
-         <div className="posts-box">
-            {postsLength > 0 ? this.renderPosts() : <div>Can&apos;t find</div>}
-         </div>
+         <React.Fragment>
+            <div className="posts-box">
+               {postsNodes.length > 0 ? postsNodes : <div>Can&apos;t find</div>}
+            </div>
+            <div className="pagination">
+               {page > 1 ? (
+                  <Button text="prev" to={`/blog?page=${page - 1}`} />
+               ) : (
+                  <Button text="prev" disabled />
+               )}
+               {POST_PER_PAGE * page < count ? (
+                  <Button text="next" to={`/blog?page=${page + 1}`} />
+               ) : (
+                  <Button text="next" disabled />
+               )}
+            </div>
+         </React.Fragment>
       );
    }
 }
 
 PostsBox.propTypes = {
-   fetchPosts: PropTypes.func.isRequired,
-   posts: PropTypes.arrayOf(
-      PropTypes.shape({
-         id: PropTypes.string.isRequired,
-         img: PropTypes.string.isRequired,
-         title: PropTypes.string.isRequired
-      })
-   ),
-   filter: PropTypes.string
+   filter: PropTypes.string,
+   location: PropTypes.shape({
+      search: PropTypes.string
+   })
 };
 
 PostsBox.defaultProps = {
-   posts: [],
    filter: ''
 };
 
-function mapStateToProps(state) {
-   return {
-      posts: state.blog.posts
-   };
-}
-
-export default connect(mapStateToProps, { fetchPosts })(PostsBox);
+export default withRouter(PostsBox);

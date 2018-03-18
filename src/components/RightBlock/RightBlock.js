@@ -13,9 +13,11 @@ class RightBlock extends Component {
    };
 
    getFilter = e => {
-      this.setState({
-         filter: e.target.value
-      });
+      e.persist();
+      if (this.timeout) clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => {
+         this.setState({ filter: e.target.value });
+      }, 700);
    };
 
    render() {
@@ -24,7 +26,10 @@ class RightBlock extends Component {
          <div className="rightblock">
             <SearchBar input={this.getFilter} />
             {isModerator && <Button text="Add" color="green" to="/create" />}
-            <PostsBox filter={this.state.filter} />
+            <PostsBox
+               filter={this.state.filter}
+               location={this.props.location}
+            />
          </div>
       );
    }
@@ -35,7 +40,10 @@ RightBlock.defaultProps = {
 };
 
 RightBlock.propTypes = {
-   isModerator: PropTypes.bool
+   isModerator: PropTypes.bool,
+   location: PropTypes.shape({
+      search: PropTypes.string
+   })
 };
 
 const mapStateToProps = ({ user }) => ({

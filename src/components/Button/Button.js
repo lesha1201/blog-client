@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom';
 import './Button.scss';
 
 class Button extends React.Component {
-   shouldComponentUpdate() {
-      return false;
-   }
-
    render() {
       const { text, color, to } = this.props;
       if (to)
