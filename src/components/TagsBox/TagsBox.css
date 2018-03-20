@@ -27,8 +27,12 @@
    cursor: pointer;
 }
 
-.tag:hover .tag__color,
-.tag--active .tag__color {
+.tag:hover .tag__color {
+   width: 20px;
+}
+
+.tag--active .tag__color,
+.tag--active:hover .tag__color {
    width: 30px;
 }
 

@@ -9,22 +9,30 @@ import Button from '../Button/Button';
 
 class RightBlock extends Component {
    state = {
-      filter: ''
+      filter: this.props.filter
    };
 
-   getFilter = e => {
+   componentWillReceiveProps(nextProps) {
+      this.setState({ filter: nextProps.filter });
+   }
+
+   getSearchFilter = e => {
       e.persist();
       if (this.timeout) clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {
-         this.setState({ filter: e.target.value });
+         this.setState({
+            filter: { ...this.state.filter, title: e.target.value }
+         });
       }, 700);
    };
 
    render() {
       const { isModerator } = this.props;
+      console.log(this.props.filter);
+      console.log(this.state.filter);
       return (
          <div className="rightblock">
-            <SearchBar input={this.getFilter} />
+            <SearchBar input={this.getSearchFilter} />
             {isModerator && <Button text="Add" color="green" to="/create" />}
             <PostsBox
                filter={this.state.filter}
@@ -36,13 +44,21 @@ class RightBlock extends Component {
 }
 
 RightBlock.defaultProps = {
-   isModerator: false
+   isModerator: false,
+   filter: {
+      title: '',
+      tags: []
+   }
 };
 
 RightBlock.propTypes = {
    isModerator: PropTypes.bool,
    location: PropTypes.shape({
       search: PropTypes.string
+   }),
+   filter: PropTypes.shape({
+      title: PropTypes.string,
+      tags: PropTypes.arrayOf(PropTypes.string)
    })
 };
 

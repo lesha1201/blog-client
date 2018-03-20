@@ -16,7 +16,10 @@ class TagsBox extends React.Component {
       return (
          <div className="tags-box">
             <h2 className="tags-box__heading">Tags</h2>
-            <TagsList tags={this.props.tags} />
+            <TagsList
+               sendFilterTags={this.props.sendFilterTags}
+               tags={this.props.tags}
+            />
          </div>
       );
    }
@@ -29,7 +32,8 @@ TagsBox.propTypes = {
          quantity: PropTypes.number.isRequired,
          color: PropTypes.string.isRequired
       })
-   ).isRequired
+   ).isRequired,
+   sendFilterTags: PropTypes.func.isRequired
 };
 
 export default TagsBox;

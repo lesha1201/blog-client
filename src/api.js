@@ -50,7 +50,7 @@ const query = {
       }
    }`,
    getPosts: `
-      query feed($filter: String, $skip: Int, $limit: Int) { 
+      query feed($filter: FilterInput, $skip: Int, $limit: Int) { 
          feed(filter: $filter, skip: $skip, limit: $limit) {
             articles {
                id

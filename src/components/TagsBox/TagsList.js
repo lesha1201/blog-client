@@ -6,27 +6,34 @@ class TagsList extends React.Component {
       super(props);
 
       this.state = {
-         activeTag: ''
+         activeTags: []
       };
    }
 
    handleClick = tag => {
-      this.setState({
-         activeTag: tag
+      this.setState(({ activeTags }) => {
+         const tags = activeTags.concat();
+         const inxOfTag = tags.indexOf(tag);
+         tags[inxOfTag] ? tags.splice(inxOfTag, 1) : tags.push(tag);
+         this.props.sendFilterTags(tags);
+         return {
+            activeTags: tags
+         };
       });
    };
 
    render() {
       const { tags } = this.props;
-      const { activeTag } = this.state;
+      const { activeTags } = this.state;
 
       return (
          <ul className="tags-list">
             {tags.map(tag => (
                <li
-                  className={`tag ${activeTag === tag && 'tag--active'}`}
+                  className={`tag ${activeTags.includes(tag.tagname) &&
+                     'tag--active'}`}
                   key={tag.tagname + tag.quantity}
-                  onClick={this.handleClick.bind(this, tag)}
+                  onClick={this.handleClick.bind(this, tag.tagname)}
                >
                   <div
                      className="tag__color"
@@ -48,7 +55,8 @@ TagsList.propTypes = {
          quantity: PropTypes.number.isRequired,
          color: PropTypes.string.isRequired
       })
-   ).isRequired
+   ).isRequired,
+   sendFilterTags: PropTypes.func.isRequired
 };
 
 export default TagsList;

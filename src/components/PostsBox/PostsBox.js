@@ -23,7 +23,9 @@ class PostsBox extends Component {
    }
 
    componentWillReceiveProps(nextProps) {
-      if (nextProps.filter !== this.props.filter) {
+      if (
+         JSON.stringify(nextProps.filter) !== JSON.stringify(this.props.filter)
+      ) {
          this.fetchPosts(nextProps.filter);
       }
       if (nextProps.location.search !== this.props.location.search) {
@@ -33,13 +35,14 @@ class PostsBox extends Component {
             top: 0,
             behavior: 'smooth'
          });
-         this.fetchPosts('', page);
+         this.fetchPosts({}, page);
          this.setState({ page });
       }
    }
 
    fetchPosts = (filter = this.props.filter, page = this.state.page) => {
-      const skip = filter ? 0 : POST_PER_PAGE * (page - 1);
+      const skip =
+         Object.keys(filter).length > 0 ? 0 : POST_PER_PAGE * (page - 1);
 
       blogAPI.getPosts(filter, skip, POST_PER_PAGE).then(posts => {
          this.setState({ posts });
@@ -52,7 +55,7 @@ class PostsBox extends Component {
 
       return articles
          .filter(article =>
-            article.title.toLowerCase().includes(filter.toLowerCase())
+            article.title.toLowerCase().includes(filter.title.toLowerCase())
          )
          .map(article => <PostCard key={article.id} postData={article} />);
    };
@@ -85,14 +88,20 @@ class PostsBox extends Component {
 }
 
 PostsBox.propTypes = {
-   filter: PropTypes.string,
+   filter: PropTypes.shape({
+      title: '',
+      tags: PropTypes.arrayOf(PropTypes.string)
+   }),
    location: PropTypes.shape({
       search: PropTypes.string
    })
 };
 
 PostsBox.defaultProps = {
-   filter: ''
+   filter: {
+      title: '',
+      tags: []
+   }
 };
 
 export default withRouter(PostsBox);
