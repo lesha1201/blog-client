@@ -1,4 +1,4 @@
-$red: #d62a38;
+@import '../../../css/_colors';
 $errorText: #e0e0e0;
 
 .form-field {
@@ -45,7 +45,7 @@ $errorText: #e0e0e0;
    position: absolute;
    width: 20px;
    height: 20px;
-   background: $red;
+   background: $errorColor;
    border-radius: 50%;
    right: 15px;
    top: 50%;
@@ -82,7 +82,7 @@ $errorText: #e0e0e0;
 .form-field__error__text {
    position: absolute;
    padding: 5px;
-   background: $red;
+   background: $errorColor;
    font-size: 14px;
    color: $errorText;
    top: -200%;

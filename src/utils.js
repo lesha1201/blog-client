@@ -29,6 +29,16 @@ export function textToReadableURL(text, id, url) {
 }
 
 export function parseQueryString(query) {
+   if (!query) return {};
    const fields = query.substr(query.indexOf('?') + 1);
    return querystring.parse(fields);
 }
+
+export const checkFormForErrors = userData => {
+   const errs = {};
+   const keys = Object.keys(userData);
+   keys.forEach(key => {
+      if (userData[key].trim().length <= 0) errs[key] = "Can't be blank.";
+   });
+   return errs;
+};

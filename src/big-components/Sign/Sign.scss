@@ -1,3 +1,5 @@
+@import '../../css/_colors';
+
 .sign {
    display: flex;
    flex-flow: column;
@@ -6,8 +8,14 @@
 
 .sign-form {
    width: 468px;
+   padding: 36px;
+   background-color: $grayblue;
 
    & .btn:not(:last-child) {
       margin-right: 5px;
+   }
+
+   & .error-card {
+      margin-bottom: 20px;
    }
 }

@@ -105,15 +105,30 @@ const query = {
 
 export const userAPI = {
    login: userInfo =>
-      apolloFetch({ query: query.signin, variables: userInfo }).then(res => ({
-         ...res.data.signin.user,
-         token: res.data.signin.token
-      })),
+      apolloFetch({ query: query.signin, variables: userInfo })
+         .then(res => {
+            if (res.errors && res.errors.length > 0) throw res.errors;
+            else
+               return {
+                  ...res.data.signin.user,
+                  token: res.data.signin.token
+               };
+         })
+         .catch(err => {
+            throw err;
+         }),
    signup: userInfo =>
-      apolloFetch({ query: query.signup, variables: userInfo }).then(res => ({
-         ...res.data.signup.user,
-         token: res.data.signup.token
-      })),
+      apolloFetch({ query: query.signup, variables: userInfo })
+         .then(res => {
+            if (res.errors && res.errors.length > 0) throw res.errors;
+            return {
+               ...res.data.signup.user,
+               token: res.data.signup.token
+            };
+         })
+         .catch(err => {
+            throw err;
+         }),
    verifyJWT: token =>
       apolloFetch({ query: query.verifyJWT, variables: { token } }).then(
          res => {

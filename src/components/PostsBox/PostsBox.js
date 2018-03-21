@@ -26,23 +26,26 @@ class PostsBox extends Component {
       if (
          JSON.stringify(nextProps.filter) !== JSON.stringify(this.props.filter)
       ) {
-         this.fetchPosts(nextProps.filter);
+         if (this.state.page > 1) this.props.history.push('/blog?page=1');
+         else this.fetchNewPage(null, nextProps.filter);
       }
       if (nextProps.location.search !== this.props.location.search) {
-         const page =
-            parseInt(parseQueryString(nextProps.location.search).page) || 1;
-         window.scroll({
-            top: 0,
-            behavior: 'smooth'
-         });
-         this.fetchPosts({}, page);
-         this.setState({ page });
+         this.fetchNewPage(nextProps.location.search);
       }
    }
 
+   fetchNewPage = (query, filter = this.props.filter) => {
+      const page = parseInt(parseQueryString(query).page) || 1;
+      window.scroll({
+         top: 0,
+         behavior: 'smooth'
+      });
+      this.fetchPosts(filter, page);
+      this.setState({ page });
+   };
+
    fetchPosts = (filter = this.props.filter, page = this.state.page) => {
-      const skip =
-         Object.keys(filter).length > 0 ? 0 : POST_PER_PAGE * (page - 1);
+      const skip = POST_PER_PAGE * (page - 1);
 
       blogAPI.getPosts(filter, skip, POST_PER_PAGE).then(posts => {
          this.setState({ posts });
@@ -94,6 +97,9 @@ PostsBox.propTypes = {
    }),
    location: PropTypes.shape({
       search: PropTypes.string
+   }),
+   history: PropTypes.shape({
+      push: PropTypes.func.isRequired
    })
 };
 

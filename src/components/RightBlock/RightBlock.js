@@ -28,8 +28,6 @@ class RightBlock extends Component {
 
    render() {
       const { isModerator } = this.props;
-      console.log(this.props.filter);
-      console.log(this.state.filter);
       return (
          <div className="rightblock">
             <SearchBar input={this.getSearchFilter} />

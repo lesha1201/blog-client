@@ -103,60 +103,66 @@ class CreatePost extends Component {
    render() {
       const { data, editMode } = this.state;
       return (
-         <div className="create-post">
+         <React.Fragment>
             <SectionHeading text="Create" />
-            <Form onSubmit={this.onSubmit}>
-               <Form.Field>
-                  <label htmlFor="title">Title</label>
-                  <input
-                     type="text"
-                     id="title"
-                     name="title"
-                     placeholder="Your title"
-                     value={data.title}
-                     onChange={this.onChangeData}
-                  />
-               </Form.Field>
-               <Form.Field>
-                  <label htmlFor="img">Image URL</label>
-                  <input
-                     type="text"
-                     name="img"
-                     id="img"
-                     placeholder="URL for image"
-                     value={data.img}
-                     onChange={this.onChangeData}
-                  />
-               </Form.Field>
-               <Form.Field>
-                  <label htmlFor="text">Text</label>
-                  <textarea
-                     id="text"
-                     name="text"
-                     placeholder="Text"
-                     value={data.text}
-                     onChange={this.onChangeData}
-                  />
-               </Form.Field>
-               <Form.Field>
-                  <label htmlFor="tag">Tags</label>
-                  {this.renderTags()}
-                  <input
-                     type="text"
-                     id="tag"
-                     name="tag"
-                     placeholder="#tag1 #tag2"
-                     value={this.state.tag}
-                     onChange={this.onChange}
-                     onKeyPress={this.addTag}
-                  />
-               </Form.Field>
-               <Button color="green" text={editMode ? 'Update' : 'Add'} />
-               {editMode && (
-                  <Button onClick={this.deletePost} color="red" text="Delete" />
-               )}
-            </Form>
-         </div>
+            <div className="create-post">
+               <Form onSubmit={this.onSubmit}>
+                  <Form.Field>
+                     <label htmlFor="title">Title</label>
+                     <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="Your title"
+                        value={data.title}
+                        onChange={this.onChangeData}
+                     />
+                  </Form.Field>
+                  <Form.Field>
+                     <label htmlFor="img">Image URL</label>
+                     <input
+                        type="text"
+                        name="img"
+                        id="img"
+                        placeholder="URL for image"
+                        value={data.img}
+                        onChange={this.onChangeData}
+                     />
+                  </Form.Field>
+                  <Form.Field>
+                     <label htmlFor="text">Text</label>
+                     <textarea
+                        id="text"
+                        name="text"
+                        placeholder="Text"
+                        value={data.text}
+                        onChange={this.onChangeData}
+                     />
+                  </Form.Field>
+                  <Form.Field>
+                     <label htmlFor="tag">Tags</label>
+                     {this.renderTags()}
+                     <input
+                        type="text"
+                        id="tag"
+                        name="tag"
+                        placeholder="#tag1 #tag2"
+                        value={this.state.tag}
+                        onChange={this.onChange}
+                        onKeyPress={this.addTag}
+                     />
+                  </Form.Field>
+                  <Button color="green" text={editMode ? 'Update' : 'Add'} />
+                  {editMode && (
+                     <Button
+                        onClick={this.deletePost}
+                        color="red"
+                        text="Delete"
+                     />
+                  )}
+               </Form>
+            </div>
+         </React.Fragment>
       );
    }
 }

@@ -1,3 +1,10 @@
+@import '../../css/_colors';
+
+.create-post {
+   background-color: $grayblue;
+   padding: 36px;
+}
+
 .create-post .tags-list {
    margin: 15px 0;
 }

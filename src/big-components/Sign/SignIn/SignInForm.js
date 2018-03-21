@@ -5,14 +5,17 @@ import { connect } from 'react-redux';
 
 import Form from '../../../components/Form/Form';
 import Button from '../../../components/Button/Button';
+import ErrorCard from '../../../components/ErrorCard/ErrorCard';
 import { login } from '../../../actions/user';
+import { checkFormForErrors } from '../../../utils';
 
 class SignInForm extends Component {
    state = {
       userInfo: {
          username: '',
          password: ''
-      }
+      },
+      errs: {}
    };
 
    onChangeUserInfo = e => {
@@ -23,34 +26,56 @@ class SignInForm extends Component {
 
    onSubmit = e => {
       e.preventDefault();
-
       const { userInfo } = this.state;
-      this.props.login(userInfo).then(() => this.props.history.push('/blog'));
+      const errs = checkFormForErrors(userInfo);
+      this.setState({ errs });
+
+      if (Object.keys(errs).length === 0)
+         this.props
+            .login(userInfo)
+            .then(() => this.props.history.push('/blog'))
+            .catch(err =>
+               this.setState({
+                  errs: { message: err[0].message }
+               })
+            );
    };
 
    render() {
+      const { errs } = this.state;
       return (
          <div className="sign-form">
+            {errs.message && <ErrorCard message={errs.message} />}
             <Form onSubmit={this.onSubmit}>
                <Form.Field>
                   <label htmlFor="username">Username</label>
-                  <input
-                     type="text"
-                     id="username"
-                     name="username"
-                     placeholder="Your username"
-                     onChange={this.onChangeUserInfo}
-                  />
+                  <div style={{ position: 'relative' }}>
+                     <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Your username"
+                        onChange={this.onChangeUserInfo}
+                     />
+                     {errs.username && (
+                        <Form.Field.Error text={errs.username} />
+                     )}
+                  </div>
                </Form.Field>
                <Form.Field>
                   <label htmlFor="password">Password</label>
-                  <input
-                     type="password"
-                     id="password"
-                     name="password"
-                     placeholder="************"
-                     onChange={this.onChangeUserInfo}
-                  />
+                  <div style={{ position: 'relative' }}>
+                     <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="************"
+                        onChange={this.onChangeUserInfo}
+                     />
+                     {errs.password && (
+                        <Form.Field.Error text={errs.password} />
+                     )}
+                  </div>
                </Form.Field>
                <Button color="blue" text="Sign In" />
                <Button to="/signup" color="link" text="Sign Up" />
