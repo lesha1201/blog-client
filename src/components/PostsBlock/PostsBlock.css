@@ -1,0 +1,7 @@
+.posts-block .post-card:not(:last-child) {
+   margin-bottom: 20px;
+}
+
+.posts-block__pagination {
+   margin-top: 20px;
+}

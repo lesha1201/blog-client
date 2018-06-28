@@ -1,4 +1,84 @@
-.form {
-   display: block;
-   border-radius: 5px;
+.form-error {
+   margin-bottom: 15px;
+}
+
+.form-group {
+   display: flex;
+   justify-content: space-between;
+}
+
+.form-field {
+   margin-bottom: 30px;
+}
+
+.form-field__label {
+   font-size: 18px;
+   margin-bottom: 15px;
+}
+
+.input-block {
+   position: relative;
+}
+
+.input-block__icon,
+.input-block__show-pass {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   color: #a4b8c9;
+   font-size: 22px;
+}
+
+.input-block__icon {
+   left: 15px;
+}
+
+.input-block__show-pass {
+   right: 15px;
+   cursor: pointer;
+}
+
+.input-block__input,
+.textarea-block__textarea {
+   width: 100%;
+   border: 1px solid #a4b8c9;
+   border-radius: 10px;
+   padding: 18px 15px;
+   font-size: 16px;
+   outline: none;
+}
+
+.input-block__input--error,
+.textarea-block__textarea--error {
+   border: 1px solid #ff5151;
+}
+
+.input-block__input:focus,
+.textarea-block__textarea:focus {
+   border: 1px solid #4096e0;
+}
+
+.input-block__input::-webkit-input-placeholder,
+.textarea-block__textarea::-webkit-input-placeholder {
+   color: #a4b8c9;
+}
+
+.input-block__input::-moz-placeholder,
+.textarea-block__textarea::-webkit-input-placeholder {
+   color: #a4b8c9;
+}
+
+.input-block__input:-moz-placeholder,
+.textarea-block__textarea::-webkit-input-placeholder {
+   color: #a4b8c9;
+}
+
+.input-block__input:-ms-input-placeholder,
+.textarea-block__textarea::-webkit-input-placeholder {
+   color: #a4b8c9;
+}
+
+.textarea-block__textarea {
+   resize: none;
+   height: auto;
 }

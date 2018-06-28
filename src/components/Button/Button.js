@@ -4,34 +4,49 @@ import { Link } from 'react-router-dom';
 import './Button.scss';
 
 class Button extends React.Component {
+   buildClassName(modifiers, className) {
+      let newClassName = 'btn ';
+      modifiers.forEach(
+         modifier => modifier && (newClassName += `btn--${modifier} `)
+      );
+      if (className) newClassName += className;
+      return newClassName;
+   }
+
    render() {
-      const { text, color, to } = this.props;
+      const {
+         children,
+         color,
+         to,
+         type,
+         size,
+         className,
+         ...props
+      } = this.props;
+      let newClassName = this.buildClassName([color, size, type], className);
+
       if (to)
          return (
-            <Link
-               to={to}
-               className={`btn ${color ? 'btn--' + color : ''}`}
-               {...this.props}
-            >
-               {text}
+            <Link to={to} className={newClassName} {...props}>
+               {children}
             </Link>
          );
       else
          return (
-            <button
-               className={`btn ${color ? 'btn--' + color : ''}`}
-               {...this.props}
-            >
-               {text}
+            <button className={newClassName} {...props}>
+               {children}
             </button>
          );
    }
 }
 
 Button.propTypes = {
-   text: PropTypes.string.isRequired,
+   children: PropTypes.node.isRequired,
    to: PropTypes.string,
-   color: PropTypes.string
+   color: PropTypes.oneOf(['green', 'red', 'blue', 'clear']),
+   type: PropTypes.string,
+   size: PropTypes.oneOf(['wide']),
+   className: PropTypes.string
 };
 
 export default Button;

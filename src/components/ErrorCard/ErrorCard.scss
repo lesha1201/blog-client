@@ -1,7 +1,16 @@
-@import '../../css/_colors';
-
 .error-card {
+   position: relative;
    padding: 10px 20px;
-   background: $errorColor;
+   background: #ffcbce;
+   border: 1px solid #f00;
+   color: #f00;
    border-radius: 5px;
+}
+
+.error-card__close {
+   position: absolute;
+   right: 5%;
+   top: 50%;
+   transform: translateY(-50%);
+   cursor: pointer;
 }

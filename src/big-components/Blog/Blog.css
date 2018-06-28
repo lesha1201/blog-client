@@ -1,1 +1,120 @@
+.blog-section__head {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   margin-bottom: 48px;
+}
 
+.blog-section__head .filter-btn {
+   display: none;
+}
+
+.blog-section__head .menu-btn {
+   display: none;
+}
+
+.blog-section__head .add-btn {
+   margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 1390px) {
+   .blog-section .post-card__title {
+      font-size: 20px;
+   }
+
+   .blog-section .post-card__desc {
+      font-size: 16px;
+   }
+}
+
+@media only screen and (max-width: 1280px) {
+   .blog-section__head {
+      margin-bottom: 32px;
+   }
+
+   .blog-section .search-block {
+      font-size: 28px;
+   }
+
+   .blog-section .post-card {
+      padding: 23px;
+      min-height: 270px;
+   }
+
+   .blog-section__head .filter-btn {
+      display: block;
+      padding: 0;
+      background: transparent;
+      font-size: 32px;
+      color: #0088ff;
+      margin-left: auto;
+   }
+}
+
+@media only screen and (max-width: 853px) {
+   .blog-section .menu-btn,
+   .blog-section .filter-btn {
+      font-size: 40px;
+   }
+
+   .main-content .menu-btn {
+      display: block;
+      padding: 0;
+      background: transparent;
+      color: #0088ff;
+   }
+
+   .main-content__head .search-block {
+      order: 3;
+      width: 100%;
+      margin-top: 10px;
+   }
+}
+
+@media only screen and (max-width: 720px) {
+   .blog-section .post-card {
+      flex-direction: column;
+      padding: 0;
+   }
+
+   .blog-section .post-card__img-link,
+   .blog-section .post-card__info {
+      width: 100%;
+   }
+
+   .blog-section .post-card__img-link {
+      height: calc(100vh / 3.7);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      margin: 0;
+   }
+
+   .blog-section .post-card__info {
+      padding: 18px;
+   }
+
+   .blog-section .post-card__desc {
+      margin: 10px 0;
+      max-height: calc(100vh / 5);
+   }
+
+   .blog-section .post-card__head {
+      flex-direction: column;
+      align-items: flex-start;
+   }
+
+   .blog-section .post-card__link {
+      width: 100%;
+      margin-bottom: 10px;
+   }
+
+   .blog-section .post-card__title {
+      margin: 0;
+   }
+}
+
+@media only screen and (max-width: 470px) {
+   .blog-section__head {
+      margin-bottom: 20px;
+   }
+}

@@ -1,0 +1,57 @@
+.sign-card {
+   max-width: 616px;
+   width: 100%;
+   margin: 0 auto;
+}
+
+.sign-card__head {
+   display: flex;
+   width: 100%;
+}
+
+.sign-card__btn {
+   border: none;
+   outline: none;
+   text-decoration: none;
+   text-align: center;
+   background: #f4f7f9;
+   color: #a4b8c9;
+   padding: 30px 0;
+   width: 50%;
+   cursor: pointer;
+}
+
+.sign-card__btn--left {
+   border-top-left-radius: 10px;
+}
+.sign-card__btn--right {
+   border-top-right-radius: 10px;
+}
+
+.sign-card__btn--active {
+   background: #fff;
+   color: #000;
+}
+
+.sign-card__form {
+   width: 100%;
+   padding: 40px 70px;
+   padding-bottom: 60px;
+}
+
+.sign-card__form-btns {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-basis: 100%;
+}
+
+.sign-card__form-btns .btn {
+   flex-grow: 1;
+}
+
+.sign-card__forgetpassword {
+   color: #a4b8c9;
+   padding: 0;
+   margin-left: 20px;
+}

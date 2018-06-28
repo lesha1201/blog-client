@@ -5,5 +5,6 @@ export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
 export const LOADING = 'LOADING';
 export const NO_LOADING = 'NO_LOADING';
 export const STORE_POSTS = 'STORE_POSTS';
+export const SET_FILTER = 'SET_FILTER';
 export const ADD_POST = 'ADD_POST';
 export const POST_PER_PAGE = 9;

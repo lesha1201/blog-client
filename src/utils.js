@@ -34,11 +34,25 @@ export function parseQueryString(query) {
    return querystring.parse(fields);
 }
 
-export const checkFormForErrors = userData => {
+export const checkFormForErrors = data => {
    const errs = {};
-   const keys = Object.keys(userData);
+   const keys = Object.keys(data);
    keys.forEach(key => {
-      if (userData[key].trim().length <= 0) errs[key] = "Can't be blank.";
+      if (typeof data[key] == 'string' && data[key].trim().length <= 0)
+         errs[key] = "Can't be blank.";
    });
    return errs;
 };
+
+export const checkImgUrl = url => {
+   const regex = /\.(png|svg|jpe?g|gif)/gi;
+   if (!regex.test(url)) return 'Invalid URL';
+};
+
+export function fillObject(target, source) {
+   const newObject = Object.assign({}, target);
+   for (let key in newObject) {
+      newObject[key] = source[key];
+   }
+   return newObject;
+}

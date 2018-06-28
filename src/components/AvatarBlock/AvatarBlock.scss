@@ -1,0 +1,16 @@
+.avatar-block {
+   display: flex;
+   align-items: center;
+}
+
+.avatar-block__img {
+   width: 70px;
+   height: 70px;
+   border-radius: 50%;
+   margin-right: 15px;
+}
+
+.avatar-block__name {
+   text-decoration: none;
+   color: #fff;
+}

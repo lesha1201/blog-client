@@ -8,6 +8,7 @@ const query = {
             email
             fullName
             role
+            avatar
          }
       }
    `,
@@ -20,17 +21,18 @@ const query = {
                email
                fullName
                role
+               avatar
             }
          }
       }
    `,
    signup: `
-      mutation createUser($username: String!, $email: String!, $password: String!, $fullname: String!) {
+      mutation createUser($username: String!, $email: String!, $password: String!, $fullName: String!) {
          signup(
             username: $username,
             email: $email,
             password: $password,
-            fullName: $fullname
+            fullName: $fullName
          ) {
             token
             user {
@@ -38,15 +40,15 @@ const query = {
                email
                fullName
                role
+               avatar
             }
          }
       }
    `,
-   allTags: `{ 
-      allTags {
-         tagname
-         quantity
-         color
+   getCategories: `{ 
+      getCategories {
+         value
+         label
       }
    }`,
    getPosts: `
@@ -70,8 +72,21 @@ const query = {
             text
             author {
                fullName
+               avatar
             }
-            tags
+            comments {
+               author {
+                  id
+                  fullName
+                  avatar
+               }
+               text
+               createdAt
+            }
+            categories {
+               value
+               label
+            }
             createdAt
          }
       }
@@ -98,6 +113,19 @@ const query = {
       mutation deletePost($id: ID!) {
          deletePost(id: $id) {
             id
+         }
+      }
+   `,
+   addCommentToPost: `
+      mutation addCommentToPost($postId: ID!, $commentText: String!) {
+         addCommentToPost(postId: $postId, commentText: $commentText) {
+            author {
+               id
+               fullName
+               avatar
+            }
+            text
+            createdAt
          }
       }
    `
@@ -139,8 +167,10 @@ export const userAPI = {
 };
 
 export const blogAPI = {
-   getAllTags: () =>
-      apolloFetch({ query: query.allTags }).then(res => res.data.allTags),
+   getCategories: () =>
+      apolloFetch({ query: query.getCategories }).then(
+         res => res.data.getCategories
+      ),
    getPosts: (filter, skip, limit) =>
       apolloFetch({
          query: query.getPosts,
@@ -148,7 +178,7 @@ export const blogAPI = {
       }).then(res => res.data.feed),
    getPost: id =>
       apolloFetch({ query: query.getPost, variables: { id } }).then(
-         res => res.data.getPost
+         res => res && res.data && res.data.getPost
       ),
    createPost: data =>
       apolloFetch({ query: query.createPost, variables: { input: data } }).then(
@@ -162,5 +192,10 @@ export const blogAPI = {
    deletePost: id =>
       apolloFetch({ query: query.deletePost, variables: { id } }).then(
          res => res.data.deletePost
-      )
+      ),
+   addCommentToPost: (postId, commentText) =>
+      apolloFetch({
+         query: query.addCommentToPost,
+         variables: { postId, commentText }
+      }).then(res => res.data.addCommentToPost)
 };

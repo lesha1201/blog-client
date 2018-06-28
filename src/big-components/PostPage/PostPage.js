@@ -3,37 +3,51 @@ import PropTypes from 'prop-types';
 
 import { blogAPI } from '../../api';
 import Post from '../../components/Post/Post';
-import PostInfo from '../../components/PostInfo/PostInfo';
-import SectionHeading from '../../components/SectionHeading/SectionHeading';
+import Loader from '../../components/Loader/Loader';
 
 class PostPage extends Component {
    state = {
-      post: {
-         id: '',
-         author: { fullName: '' },
-         title: '',
-         tags: [],
-         text: '',
-         img: '',
-         createdAt: ''
-      }
+      post: undefined,
+      comments: [],
+      loading: true
    };
 
    componentDidMount() {
-      blogAPI
-         .getPost(this.props.match.params.id)
-         .then(post => this.setState({ post }));
+      this.setState({ loading: true });
+      blogAPI.getPost(this.props.match.params.id).then(post => {
+         this.setState({
+            post,
+            comments: post && post.comments,
+            loading: false
+         });
+      });
    }
 
+   onComment = commentText => {
+      blogAPI
+         .addCommentToPost(this.props.match.params.id, commentText)
+         .then(comment =>
+            this.setState(prevState => ({
+               comments: [...prevState.comments, comment]
+            }))
+         );
+   };
+
    render() {
-      const { post } = this.state;
+      const { post, comments, loading } = this.state;
       return (
          <React.Fragment>
-            <SectionHeading text="Blog" />
-            <div className="flex-sb">
-               <Post post={post} />
-               <PostInfo author={post.author.fullName} tags={post.tags} />
-            </div>
+            {post ? (
+               <Post
+                  post={post}
+                  comments={comments}
+                  onComment={this.onComment}
+               />
+            ) : loading ? (
+               <Loader />
+            ) : (
+               <div>Can&apos;t load the post. Something went wrong :(</div>
+            )}
          </React.Fragment>
       );
    }

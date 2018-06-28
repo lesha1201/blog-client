@@ -1,0 +1,40 @@
+.menu {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+}
+
+.menu__item {
+   margin-bottom: 36px;
+}
+
+.menu__link {
+   display: flex;
+   align-items: center;
+   color: #a4b8c9;
+   text-decoration: none;
+   font-size: 20px;
+   line-height: 1;
+}
+
+.menu__link ion-icon {
+   font-size: 24px;
+   margin-right: 12px;
+}
+
+.menu__link--active {
+   color: #fff;
+}
+
+.menu__link--active:before {
+   position: absolute;
+   content: '';
+   width: 3px;
+   height: 36px;
+   left: 0;
+   background: #0088ff;
+}
+
+.menu__link--active ion-icon {
+   color: #0088ff;
+}

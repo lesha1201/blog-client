@@ -6,8 +6,9 @@ import './TopNav.scss';
 
 import Button from '../Button/Button';
 import * as actions from '../../actions/user';
+import ProfileDropdown from '../ProfileDropdown/ProfileDropdown';
 
-const TopNav = ({ authToken, logout }) => {
+const TopNav = ({ authToken, avatar, logout }) => {
    return (
       <nav className="navbar">
          <Link to="/">
@@ -35,7 +36,7 @@ const TopNav = ({ authToken, logout }) => {
          </ul>
          {authToken ? (
             <div className="navbar__right">
-               <button onClick={logout}>Logout</button>
+               <ProfileDropdown onLogout={logout} avatar={avatar} />
             </div>
          ) : (
             <div className="navbar__right">
@@ -49,12 +50,14 @@ const TopNav = ({ authToken, logout }) => {
 
 TopNav.propTypes = {
    authToken: PropTypes.string,
+   avatar: PropTypes.string,
    logout: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
    return {
-      authToken: state.user.token
+      authToken: state.user.token,
+      avatar: state.user.avatar
    };
 }
 
