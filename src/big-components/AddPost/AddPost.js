@@ -54,7 +54,7 @@ class AddPost extends Component {
             type: 'text',
             label: 'Title',
             name: 'addpost_title',
-            icon: 'ion-ios-pricetags',
+            icon: 'pricetag',
             dataName: 'title',
             required: true
          },
@@ -62,7 +62,7 @@ class AddPost extends Component {
             type: 'text',
             label: 'Image URL',
             name: 'addpost_imageurl',
-            icon: 'ion-ios-pricetags',
+            icon: 'link',
             dataName: 'img',
             required: true
          },
@@ -147,7 +147,7 @@ class AddPost extends Component {
       const { isEditing } = this.state;
       return (
          <React.Fragment>
-            <Heading text="Add Post" />
+            <Heading text={isEditing ? 'Edit Post' : 'Add Post'} />
             <Form
                onSubmit={this.onSubmit}
                onChange={this.onChange}
@@ -155,7 +155,7 @@ class AddPost extends Component {
                className="card form-card"
             >
                {this.renderFormFields()}
-               <Button color="green">{isEditing ? "Update" : "Add"}</Button>
+               <Button color="green">{isEditing ? 'Update' : 'Add'}</Button>
             </Form>
          </React.Fragment>
       );

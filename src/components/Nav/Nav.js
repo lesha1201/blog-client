@@ -15,7 +15,7 @@ const Nav = ({ logout }) => {
             {logout && (
                <li className="menu__item">
                   <Link to="/" className="menu__link" onClick={logout}>
-                     <i className="icon ion-log-out" />Logout
+                     <ion-icon name="exit" />Logout
                   </Link>
                </li>
             )}

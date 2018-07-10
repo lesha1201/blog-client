@@ -28,7 +28,7 @@ class Blog extends Component {
                   </Button>
                )}
                <Button className="menu-btn">
-                  <i className="icon ion-navicon-round" />
+                  <ion-icon name="menu" />
                </Button>
                <SearchBlock onChange={this.onSearch} />
                <Button className="filter-btn">
@@ -66,4 +66,7 @@ function mapStateToProps(state) {
    };
 }
 
-export default connect(mapStateToProps, { setFilter })(Blog);
+export default connect(
+   mapStateToProps,
+   { setFilter }
+)(Blog);

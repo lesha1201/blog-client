@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PostInfoBlock from './PostInfoBlock';
 
-const PostTopRow = ({ imgUrl, categories, createdAt, author }) => {
+const PostTopRow = ({
+   imgUrl,
+   categories,
+   createdAt,
+   author,
+   commentsCount
+}) => {
    return (
       <div className="post__top-row">
          <div className="post__img">
@@ -13,6 +19,7 @@ const PostTopRow = ({ imgUrl, categories, createdAt, author }) => {
             categories={categories}
             createdAt={createdAt}
             author={author}
+            commentsCount={commentsCount}
          />
       </div>
    );
@@ -29,7 +36,8 @@ PostTopRow.propTypes = {
    createdAt: PropTypes.string.isRequired,
    author: PropTypes.shape({
       fullName: PropTypes.string.isRequired
-   }).isRequired
+   }).isRequired,
+   commentsCount: PropTypes.number.isRequired
 };
 
 export default PostTopRow;

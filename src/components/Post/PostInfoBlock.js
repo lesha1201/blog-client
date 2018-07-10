@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Tag from '../Tag/Tag';
 import AvatarBlock from '../AvatarBlock/AvatarBlock';
 
-const PostInfoBlock = ({ author, createdAt, categories }) => {
+const PostInfoBlock = ({ author, createdAt, categories, commentsCount }) => {
    function renderCategories() {
       return categories.map(category => (
          <Tag
             key={category.value}
             className="post__tag"
-            bgColor="#FCE759"
-            textColor="#232426"
+            bgColor={category.bgColor}
+            textColor={category.textColor}
          >
             {category.label}
          </Tag>
@@ -28,15 +28,12 @@ const PostInfoBlock = ({ author, createdAt, categories }) => {
 
          <div className="post__metadata">
             <div className="post__meta-date">
-               <i className="icon ion-md-calendar" />
+               <ion-icon name="calendar" />
                {new Date(createdAt).toLocaleDateString()}
             </div>
-
-            <div className="post__meta-views">
-               <i className="icon ion-md-eye" />824
-            </div>
             <div className="post__meta-comments">
-               <i className="icon ion-md-text" />2
+               <ion-icon name="text" />
+               {commentsCount}
             </div>
          </div>
 
@@ -55,7 +52,8 @@ PostInfoBlock.propTypes = {
    createdAt: PropTypes.string.isRequired,
    author: PropTypes.shape({
       fullName: PropTypes.string.isRequired
-   }).isRequired
+   }).isRequired,
+   commentsCount: PropTypes.number.isRequired
 };
 
 export default PostInfoBlock;

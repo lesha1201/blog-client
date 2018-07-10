@@ -12,6 +12,7 @@ $red: #dd2b34;
    border-radius: 10px;
    line-height: 1.2;
    text-align: center;
+   white-space: nowrap;
    text-decoration: none;
    cursor: pointer;
    outline: none;
@@ -26,6 +27,9 @@ $red: #dd2b34;
 .btn--clear {
    background: none;
    color: inherit;
+}
+.btn--clear:hover {
+   color: $blue;
 }
 
 .btn--green {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Sidebar.scss';
 
 const Sidebar = ({ className, children }) => {
-   return <sidebar className={`sidebar ${className}`}>{children}</sidebar>;
+   return <aside className={`sidebar ${className || ''}`}>{children}</aside>;
 };
 
 Sidebar.propTypes = {

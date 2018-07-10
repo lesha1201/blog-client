@@ -22,6 +22,7 @@ const Post = ({ post, comments, onComment, isModerator }) => {
             categories={post.categories}
             createdAt={post.createdAt}
             author={post.author}
+            commentsCount={comments.length}
          />
 
          <div className="card post__content">{post.text}</div>

@@ -31,14 +31,7 @@ const PostCard = ({ postData }) => {
                <div className="post-card__date">09 april 2018</div>
             </div>
             <div className="post-card__desc">
-               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-               enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate...
-            </div>
-            <div className="post-card__views">
-               <i className="icon ion-eye" />893
+               {postData.text.length > 283 ? postData.text.slice(0, 283) + '...' : postData.text}
             </div>
          </div>
       </article>
@@ -48,8 +41,8 @@ const PostCard = ({ postData }) => {
 PostCard.propTypes = {
    postData: PropTypes.shape({
       img: PropTypes.string,
-      title: PropTypes.string.isRequired
-      // desc: PropTypes.desc.isRequired
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
    }).isRequired
 };
 

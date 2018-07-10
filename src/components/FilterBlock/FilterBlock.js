@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Select from 'react-select';
 import './FilterBlock.scss';
 
 import Button from '../Button/Button';
-import FieldBlock from '../FieldBlock/FieldBlock';
 import StyledSelect from '../StyledSelect/StyledSelect';
 import { setFilter } from '../../actions/blog';
 import { blogAPI } from '../../api';
-
-// export default () => (
-//    <Select
-//      defaultValue={[colourOptions[2], colourOptions[3]]}
-//      isMulti
-//      name="colors"
-//      options={colourOptions}
-//    />
-//  );
 
 class FilterBlock extends Component {
    state = {
@@ -30,8 +19,8 @@ class FilterBlock extends Component {
       filter: undefined
    };
 
-   static getDerivedStateFromProps(nextProps) {
-      if (nextProps.filter) {
+   static getDerivedStateFromProps(nextProps, state) {
+      if (!state.filter && nextProps.filter) {
          return {
             filter: nextProps.filter
          };
@@ -108,4 +97,7 @@ function mapStateToProps(state) {
    };
 }
 
-export default connect(mapStateToProps, { setFilter })(FilterBlock);
+export default connect(
+   mapStateToProps,
+   { setFilter }
+)(FilterBlock);

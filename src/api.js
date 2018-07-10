@@ -45,19 +45,22 @@ const query = {
          }
       }
    `,
-   getCategories: `{ 
+   getCategories: `{
       getCategories {
          value
          label
+         bgColor
+         textColor
       }
    }`,
    getPosts: `
-      query feed($filter: FilterInput, $skip: Int, $limit: Int) { 
+      query feed($filter: FilterInput, $skip: Int, $limit: Int) {
          feed(filter: $filter, skip: $skip, limit: $limit) {
             articles {
                id
                img
                title
+               text
             }
             count
          }
@@ -86,6 +89,8 @@ const query = {
             categories {
                value
                label
+               bgColor
+               textColor
             }
             createdAt
          }

@@ -47,4 +47,7 @@ function mapStateToProps(state) {
    };
 }
 
-export default connect(mapStateToProps, { logout: logoutAction })(LeftSidebar);
+export default connect(
+   mapStateToProps,
+   { logout: logoutAction }
+)(LeftSidebar);
